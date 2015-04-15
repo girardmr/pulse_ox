@@ -13,6 +13,7 @@ float AvgOxy;
 float Is=1E-12;
 float Vd=1;
 float oxygenation;
+float bloodOx = 0;
 int resistor = 1000000;
 int LED700=3;
 int LED800=5;
@@ -64,26 +65,26 @@ Serial.println(Absorbance700);
 oxygenation=Absorbance700/(Absorbance800 + Absorbance700);
 Serial.print("Oxygenation = " );
 Serial.println(oxygenation);
-bloodOx = -30.667*(Oxy[index])^2+10*Oxy[index]+102.67;
+bloodOx = -30.667*oxygenation*oxygenation+10*oxygenation+102.67;
 Serial.print("Blood Ox % = " );
 Serial.println(bloodOx);
 }
 
-  int total = 0;
-  int average = 0;
-  for (i=0; i<10; i++) {
-    total = total + Oxy[i];
-  }
-  average = total / 10;
+//  int total = 0;
+ // int average = 0;
+ // for (i=0; i<10; i++) {
+   // total = total + Oxy[i];
+ // }
+  //average = total / 10;
 
-Serial.print("\t Sensor current = ");
-Serial.println(sensorCurrent);
-Serial.print("LED Current 700 = " );
-Serial.println(LEDCurrent700);
-Serial.print("LED Current 800 = " );
-Serial.println(LEDCurrent800);
+//Serial.print("\t Sensor current = ");
+//Serial.println(sensorCurrent);
+//Serial.print("LED Current 700 = " );
+//Serial.println(LEDCurrent700);
+//Serial.print("LED Current 800 = " );
+//Serial.println(LEDCurrent800);
 
-Serial.print("\t Average oxygenation = ");
-Serial.println(average);
+//Serial.print("\t Average oxygenation = ");
+//Serial.println(average);
 
 }

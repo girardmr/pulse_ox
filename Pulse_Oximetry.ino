@@ -11,6 +11,7 @@ float LEDCurrent700 = 0;
 float Absorbance700 = 0;
 float LEDCurrent800 = 0;
 float Absorbance800 = 0;
+float bloodOx = 0;
 int resistor = 1000000;
 int LED=3;
 int Oxy[]={0,0,0,0,0,0,0,0,0,0};
@@ -37,6 +38,7 @@ sensorCurrent = sensorVoltage*5/(resistor*1023);
 LEDCurrent800=Is*(exp((q*Vd)/(N*k*T))-1);
 Absorbance800 = -log10(sensorCurrent/LEDCurrent800);
 Oxy[index]=Absorbance800/(Absorbance800 + Absorbance700);
+bloodOx = -30.667*(Oxy[index])^2+10*Oxy[index]+102.67;
 }
 
   int total = 0;

@@ -16,15 +16,23 @@ float oxygenation;
 float bloodOx = 0;
 int resistor = 1000000;
 int LED700=3;
-int LED800=5;
+int LED800=2;
 int Oxy[]={0,0,0,0,0,0,0,0,0,0};
 
 byte i=0;
+
+// include the library code:
+#include <LiquidCrystal.h>
+
+// initialize the library with the numbers of the interface pins
+LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 
 void setup() {
 Serial.begin(9600);
 pinMode(LED700, OUTPUT);
 pinMode(LED800, OUTPUT);
+  // set up the LCD's number of columns and rows:
+  lcd.begin(16, 2);
 }
 
 void loop() {
@@ -48,8 +56,23 @@ oxygenation=Absorbance700/(Absorbance800 + Absorbance700);
 bloodOx = -30.667*oxygenation*oxygenation+10*oxygenation+102.67;
 Serial.print("Blood Ox % = " );
 Serial.println(bloodOx);
+  // Turn on the display:
+  lcd.display();
+  delay(500);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Blood ox % = ");
+  lcd.setCursor(0,1);
+  lcd.print(bloodOx);
+  
+
+  
 }
 
 
 
 }
+
+
+
+
